@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gomoku YUG - Five in a Row</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <div class="page active" id="homePage">
+        <div class="home-container">
+            <h1 class="game-title">GOMOKU YUG</h1>
+            <p class="game-subtitle">Five in a Row</p>
+            
+            <div class="menu-buttons">
+                <button id="playBtn" class="main-btn">PLAY</button>
+                <button id="howToPlayBtn" class="main-btn">HOW TO PLAY</button>
+                <button id="helpBtn" class="main-btn">HELP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Mode Selection Page -->
+    <div class="page" id="modePage">
+        <div class="mode-container">
+            <h2>Select Game Mode</h2>
+            
+            <div class="mode-buttons">
+                <button id="onlineBtn" class="mode-btn">
+                    <span class="mode-icon">🌐</span>
+                    <span>Online</span>
+                </button>
+                <button id="computerBtn" class="mode-btn">
+                    <span class="mode-icon">💻</span>
+                    <span>Computer</span>
+                </button>
+                <button id="offlineBtn" class="mode-btn">
+                    <span class="mode-icon">👥</span>
+                    <span>Pass & Play</span>
+                </button>
+            </div>
+            
+            <button id="backToHomeBtn" class="back-btn">Back</button>
+        </div>
+    </div>
+
+    <!-- Online Waiting Page -->
+    <div class="page" id="waitingPage">
+        <div class="waiting-container">
+            <h2>Looking for Opponent</h2>
+            <div class="spinner"></div>
+            <p>Waiting for another player to join...</p>
+            <button id="cancelOnlineBtn" class="back-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Online Game Page -->
+    <div class="page" id="onlineGamePage">
+        <div class="game-container">
+            <div class="header">
+                <h1>GOMOKU YUG ONLINE</h1>
+                <div class="game-info">
+                    <div class="current-player">
+                        Current Player: <span id="onlineCurrentPlayer">Black</span>
+                    </div>
+                    <div class="scores">
+                        <span class="black-score">Black: <span id="onlineBlackScore">0</span></span>
+                        <span class="white-score">White: <span id="onlineWhiteScore">0</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="board-container">
+                <canvas id="onlineGameBoard"></canvas>
+            </div>
+            
+            <div class="game-controls">
+                <button id="onlineResetBtn">New Game</button>
+                <button id="onlineUndoBtn">Undo Move</button>
+                <button id="quitOnlineGameBtn">Quit</button>
+            </div>
+            
+            <div class="game-status">
+                <div id="onlineGameStatus">Waiting for opponent...</div>
+            </div>
+            
+            <div class="winner-modal" id="onlineWinnerModal">
+                <div class="modal-content">
+                    <h2 id="onlineWinnerMessage">Player Wins!</h2>
+                    <div class="modal-buttons">
+                        <button id="onlinePlayAgainBtn">Play Again</button>
+                        <button id="onlineBackToMenuBtn">Main Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Play Page -->
+    <div class="page" id="howToPlayPage">
+        <div class="instructions-container">
+            <h2>How to Play</h2>
+            
+            <div class="rules-content">
+                <h3>Objective</h3>
+                <p>Be the first player to form an unbroken line of five stones horizontally, vertically, or diagonally.</p>
+                
+                <h3>Gameplay</h3>
+                <ul>
+                    <li>Players take turns placing stones on the board</li>
+                    <li>Black plays first, followed by White</li>
+                    <li>Stones are placed on intersections of the grid lines</li>
+                    <li>Once placed, stones are not moved or removed</li>
+                </ul>
+                
+                <h3>Winning</h3>
+                <p>Form a continuous line of exactly five stones:</p>
+                <div class="win-examples">
+                    <div class="example">─────●●●●●─────</div>
+                    <div class="example">●<br>●<br>●<br>●<br>●</div>
+                    <div class="example">●<br>&nbsp;&nbsp;●<br>&nbsp;&nbsp;&nbsp;&nbsp;●<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●</div>
+                </div>
+            </div>
+            
+            <button id="backFromHowToPlayBtn" class="back-btn">Back</button>
+        </div>
+    </div>
+
+    <!-- Help Page -->
+    <div class="page" id="helpPage">
+        <div class="help-container">
+            <h2>Help</h2>
+            
+            <div class="help-content">
+                <h3>Controls</h3>
+                <p><strong>Mobile:</strong> Tap on the intersection where you want to place your stone</p>
+                <p><strong>Desktop:</strong> Click on the intersection where you want to place your stone</p>
+                
+                <h3>Game Features</h3>
+                <ul>
+                    <li><strong>Undo:</strong> Take back your last move</li>
+                    <li><strong>New Game:</strong> Start a fresh game</li>
+                    <li><strong>Pass & Play:</strong> Two players sharing the same device</li>
+                </ul>
+                
+                <h3>Tips</h3>
+                <ul>
+                    <li>Try to create multiple threats at once</li>
+                    <li>Block your opponent's attempts to form five in a row</li>
+                    <li>Control the center of the board for more flexibility</li>
+                </ul>
+                
+                <h3>About Gomoku YUG</h3>
+                <p>Gomoku YUG, also known as Five in a Row, is a traditional strategy board game that originated in China. It's played on a 15×15 grid where players attempt to get five pieces in a row while blocking their opponent.</p>
+            </div>
+            
+            <button id="backFromHelpBtn" class="back-btn">Back</button>
+        </div>
+    </div>
+
+    <!-- Game Board Page (Offline) -->
+    <div class="page" id="gamePage">
+        <div class="game-container">
+            <div class="header">
+                <h1>GOMOKU YUG </h1>
+                <div class="game-info">
+                    <div class="current-player">
+                        Current Player: <span id="currentPlayer">Black</span>
+                    </div>
+                    <div class="scores">
+                        <span class="black-score">Black: <span id="blackScore">0</span></span>
+                        <span class="white-score">White: <span id="whiteScore">0</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="board-container">
+                <canvas id="gameBoard"></canvas>
+            </div>
+            
+            <div class="game-controls">
+                <button id="resetBtn">New Game</button>
+                <button id="undoBtn">Undo Move</button>
+                <button id="quitGameBtn">Quit</button>
+            </div>
+            
+            <div class="game-status">
+                <div id="gameStatus">Black's turn</div>
+            </div>
+            
+            <div class="winner-modal" id="winnerModal">
+                <div class="modal-content">
+                    <h2 id="winnerMessage">Player Wins!</h2>
+                    <div class="modal-buttons">
+                        <button id="playAgainBtn">Play Again</button>
+                        <button id="backToMenuBtn">Main Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
